@@ -3,6 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -45,7 +46,14 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.md$/,
+        use: [
+          { loader: path.resolve('loader/mdloader.js') }
+        ]
       }
+
     ]
   },
   devServer: {

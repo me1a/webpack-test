@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import text from '../docs/test.md'
 
 
 function Index(props) {
-
+  console.log(text)
   const [count, setCount] = useState(0)
 
   function click() {
