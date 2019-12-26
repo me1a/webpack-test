@@ -50,7 +50,10 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          { loader: path.resolve('loader/mdloader.js') }
+          'html-loader',
+          {
+            loader: path.resolve('loader/mdloader.js')
+          }
         ]
       }
 
