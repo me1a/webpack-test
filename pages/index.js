@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import text from '../docs/test.md'
-import text2 from '../docs/test2.md'
+import '../less/index.less'
 
 
 function Index(props) {
-  console.log(text, text2)
-  const [count, setCount] = useState(0)
-
-  function click() {
-    setCount(count + 1)
-  }
-  return <div>
-    <h1 onClick={click}>index</h1>
-    <p>{count}d</p>
-    <div dangerouslySetInnerHTML={{ __html: text }}></div>
-    <div dangerouslySetInnerHTML={{ __html: text2 }}></div>
+  const type = [
+    { name: '博客', url: '/docs.html', blank: false },
+    { name: '资源', url: '/', blank: false },
+    { name: '资讯', url: '/', blank: false },
+    { name: '实验室', url: '/', blank: false },
+  ]
+  return <div className='home'>
+    <div>
+      <div className="name">MeiHuan`s Blog</div>
+      <div className="menu">
+        {
+          type.map((item, key) =>
+            <a href={item.url} key={key} target={item.blank ? '_blank' : ''}>{item.name}</a>
+          )
+        }
+      </div>
+    </div>
   </div>
 
 }

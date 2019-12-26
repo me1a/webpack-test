@@ -55,6 +55,10 @@ module.exports = {
             loader: path.resolve('loader/mdloader.js')
           }
         ]
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
 
     ]
