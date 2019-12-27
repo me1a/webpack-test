@@ -2,6 +2,7 @@ const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const Plugin = require('../plugin/index.js')
 
 module.exports = {
   mode: 'production',
@@ -29,7 +30,8 @@ module.exports = {
           global: 'ReactDOM'
         }
       ]
-    })
+    }),
+    new Plugin()
   ],
   module: {
     rules: [
@@ -45,6 +47,11 @@ module.exports = {
             }
           }
         ]
+      }
+      ,
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   }
