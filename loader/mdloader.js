@@ -1,18 +1,14 @@
-"use strict";
 
-const marked = require("marked");
 const loaderUtils = require("loader-utils");
+const mdToObject = require('./md/index.js')
 
 module.exports = function (markdown) {
   // merge params and default config
   const options = loaderUtils.getOptions(this);
 
-  this.cacheable();
+  const v = mdToObject(markdown)
 
-  console.log()
+  return `export default ${JSON.stringify(v)}`
 
-  marked.setOptions(options);
-  const res = marked(markdown)
-  console.log(res)
-  return res;
+
 };
