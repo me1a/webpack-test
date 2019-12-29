@@ -8,6 +8,7 @@ module.exports = {
   mode: 'production',
   entry: {
     index: './pages/index.js',
+    docs: './pages/docs.js'
   },
   output: {
     filename: '[name].js',
@@ -31,7 +32,9 @@ module.exports = {
         }
       ]
     }),
-    new Plugin()
+    new Plugin({
+      dirname: 'docs'
+    })
   ],
   module: {
     rules: [
@@ -43,16 +46,29 @@ module.exports = {
             options: {
               presets: [
                 // '@babel/preset-env',
-                '@babel/preset-react']
+                '@babel/preset-react'],
+              plugins: ['@babel/syntax-dynamic-import']
             }
           }
         ]
-      }
-      ,
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: path.resolve('loader/mdloader.js')
+          }
+        ]
+      },
       {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'async'
+    }
   }
 }

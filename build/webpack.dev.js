@@ -2,7 +2,7 @@ const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
-
+const Plugin = require('../plugin/index.js')
 
 module.exports = {
   mode: 'development',
@@ -31,6 +31,7 @@ module.exports = {
         }
       ]
     }),
+    new Plugin({ dirname: 'docs' })
   ],
   module: {
     rules: [
